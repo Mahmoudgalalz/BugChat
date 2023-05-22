@@ -1,16 +1,13 @@
+import { useNavigate } from "react-router-dom"
+import { Footer } from "./components/Footer"
 import { Button } from "./components/ui/button"
 import {ArrowRightSquare} from "lucide-react"
 function App() {
-
   return (
     <>
     <nav className="p-6">
       <ul className="flex justify-between sm:mx-36">
         <li className="font-bold text-2xl">Missue</li>
-        <li className="flex gap-10">
-        <Button>Sign up</Button>
-        <Button variant="outline">Login</Button>
-        </li>
       </ul>
     </nav>
       <section className="pt-24 bg-white">
@@ -22,7 +19,7 @@ function App() {
             <p className="px-0 mb-8 text-lg text-gray-600 md:text-xl lg:px-24">
                 Open Issues as tasks on an open-source project with no limits, and refine them with AI to have a professional feel.
             </p>
-            <Button className="group">Get Started <ArrowRightSquare className="group-hover:translate-x-2 duration-150"/></Button>
+            <Button asChild className="group"><a href="/auth">Get Started <ArrowRightSquare className="group-hover:translate-x-2 duration-150"/></a></Button>
         </div>
         <div className="w-full mx-auto mt-20 text-center md:w-10/12">
             <div className="relative z-0 w-full mt-8">
@@ -40,6 +37,7 @@ function App() {
         </div>
     </div>
 </section>
+    <Footer/>
     </>
   )
 }
