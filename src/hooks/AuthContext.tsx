@@ -1,34 +1,52 @@
-import { createContext, useContext, useMemo } from "react";
-import { useNavigate } from "react-router-dom";
-import { useLocalStorage } from "./useLocalStorage";
-import api from "../api/api";
+import { useEffect, useState } from "react";
+import { account } from "../utils/config";
 
-const AuthContext = createContext({});
-
-export function AuthProvider({children}:any){
-    const [user,setUser] = useLocalStorage("user",null);
-    const navigate = useNavigate();
-
+const useAuth = () => {
+    const [user,setUser]= useState(null);
+    const [auth,setAuth] = useState(false);
     const login = async () => {
-        const data = await api.createAccount();
-        setUser(data);
-        navigate("/dash");
+        try{
+            await account.createOAuth2Session('github',"http://localhost:5173/dashboard");
+            setAuth(true);
+        }
+        catch(e){
+            console.error(e)
+        }
     };
-    const logout = async ()=>{
-        await api.deleteCurrentSession();
-        setUser(null);
-        navigate("/", {replace:true})
+    const logout = async () => {
+        try{
+            const res = await account.deleteSession("current");
+            setAuth(false);
+            setUser(null);
+            return res;
+        }
+        catch(e){
+            console.error(e)
+        }
     }
-    const value = useMemo(
-        ()=> ({
-            user,
-            login,
-            logout,
-        }),[user]
-    );
-    return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
-}
+    const getUser = async () => {
+        try{
+            const res = await account.get();
+            return res;
+        }
+        catch(e){
+            console.error(e)
+        }
+    }
 
-export function useAuth(){
-    return useContext(AuthContext)
+    useEffect(()=>{
+        const fetchUser = async () => {
+            const res = await getUser();
+            if(res === undefined){
+                setUser(null);
+                setAuth(false);
+            }else{
+            setUser(res);
+            setAuth(true);
+        }
+        }
+        fetchUser();
+        },[]) 
+    return {login,logout,user,auth};
 }
+export { useAuth }; 
