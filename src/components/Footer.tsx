@@ -1,7 +1,9 @@
 import { GithubIcon, Twitter } from "lucide-react";
 import { Button } from "./ui/button";
+import { Link } from "react-router-dom";
 
 export function Footer(){
+
  return (
     <>
     <div className="mt-24 bg-purple-400/50 p-6">
@@ -10,6 +12,9 @@ export function Footer(){
         <Button asChild variant={"outline"} className="w-36"><a href="https://twitter.com/eitmg" target="_blank">Creator <Twitter className="ml-4"/></a></Button>
         <Button asChild className="w-36"><a href="https://github.com/mahmoudgalalz/missue" target="_blank">Contribute <GithubIcon className="ml-4"/></a></Button>
         </div>
+    <Link to={"https://appwrite.io"} target="_blank" className="hover:shadow-lg rounded-lg duration-300 fixed left-[18px] bottom-[18px]">
+        <img className="w-[160px]" src="https://appwrite.io/images-ee/press/badge-white-button.svg"></img>
+    </Link>
     </div>
     </>
  )
