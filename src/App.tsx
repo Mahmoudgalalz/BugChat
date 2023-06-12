@@ -1,7 +1,7 @@
 import { useAuth } from "./hooks/AuthContext";
 import { Loading } from "./components/Loading";
 import { AuthenticatedRoutes } from "./routes/Authenticated";
-import { PublicRoutes } from "./routes/public";
+import { PublicRoutes } from "./routes/Public";
 
 
 function App(){

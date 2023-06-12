@@ -1,4 +1,4 @@
-import { BadgeAlert, Bug, Menu, Settings, X } from "lucide-react"
+import { BadgeAlert, Bug, Settings } from "lucide-react"
 import { Link } from "react-router-dom"
 
 const sideElements = [
@@ -22,31 +22,17 @@ const sideElements = [
     {
         icon:<Settings/>,
         title:"settings",
-        Link:"/settings",
+        Link:"settings",
         end:true,
     },
 ]
 function Sidebar(){
-    const OpenSideBar = ()=>{
-        document.getElementById('default-sidebar')?.classList.remove('-translate-x-full')
-    }
-    const CloseSideBar = ()=>{
-        document.getElementById('default-sidebar')?.classList.add('-translate-x-full')
-    }
+    
     return (
-        <>
-            <button onClick={OpenSideBar} data-drawer-target="default-sidebar" data-drawer-toggle="default-sidebar" aria-controls="default-sidebar" type="button" className="inline-flex items-center p-2 mt-2 ml-3 text-sm text-gray-500 rounded-lg sm:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600">
-            <span className="sr-only">Open sidebar</span>
-                <Menu/>
-            </button>
-
-<aside id="default-sidebar" className="fixed sm:mt-16 border-2 top-0 left-0 z-0 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
+<aside id="default-sidebar" className="fixed sm:mt-16 border-2 z-0 top-0 left-0 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
    
-   <div className="h-full mt-14 px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
-   <div className="sm:hidden flex justify-end">
-        <button onClick={CloseSideBar} className="p-1 border-2 rounded-lg"><X></X></button>
-   </div>
-      <ul className="space-y-10 font-medium">
+   <div className="h-full px-3 py-4 overflow-y-auto bg-white ">
+      <ul className="space-y-10 sm:mt-10 mt-20 font-medium">
          {
             sideElements.map(element=>{
                 return (
@@ -66,7 +52,6 @@ function Sidebar(){
    </div>
 </aside>
 
-        </>
     )
 }
 export default Sidebar

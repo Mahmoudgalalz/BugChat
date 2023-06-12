@@ -1,6 +1,6 @@
 import { Navigate } from "react-router-dom";
 
-const ProtectedRoute = ({ isLoggedIn, children }) => {
+const ProtectedRoute = ({ isLoggedIn, children }:{isLoggedIn:boolean,children:JSX.Element}) => {
   if (!isLoggedIn) {
     return <Navigate to="/" replace />;
   }

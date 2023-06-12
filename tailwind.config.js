@@ -16,6 +16,25 @@ module.exports = {
       },
     },
     extend: {
+      keyframes:{
+        'spoo':{
+          '0%': {
+            transform: 'rotate(0deg)',
+          },
+          '100%': {
+            transform: 'rotate(360deg)',
+          },
+        },
+        animation: {
+          spin: 'spin 2s linear infinite',
+        },
+        ringOffsetWidth: {
+          '2': '2px',
+        },
+        ringColor: {
+          blue: '#3B82F6',
+        },
+      },
       colors: {
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
