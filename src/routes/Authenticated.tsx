@@ -8,6 +8,8 @@ import { Issues } from "../components/Dashboard/issues";
 import { Profile } from "../components/profile/settings";
 import { Register } from "../pages/OAuth/Register";
 import { Login } from "../pages/OAuth/Login";
+import { Recovery } from "../pages/OAuth/Recover";
+import { Test } from "../test";
 
 export function AuthenticatedRoutes(){
     return (
@@ -17,8 +19,7 @@ export function AuthenticatedRoutes(){
             <Route path="/profile" element={<Profile/>}></Route>
             <Route path="/gh_auth" element={<GH_UserAuth/>}></Route>
             <Route path="/redirect_gh_auth" element={<Redirect/>}></Route>
-            <Route path="/register" element={<Register/>}></Route>
-            <Route path="/Login" element={<Login/>}></Route>
+            <Route path="/test" element={<Test/>}></Route>
             <Route path="project/:id" element={<ProjectDash/>}>
               <Route path="create" element={<Issues/>}></Route>
               <Route path="reports" element={<Issues/>}></Route>

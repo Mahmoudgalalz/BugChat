@@ -12,6 +12,15 @@ const functions = new Functions(client)
 const database = new Databases(client)
 export const account = new Account(client);
 
+export async function RecoverPassword(email:string){
+    try{
+        await account.createRecovery(email,import.meta.env.BASE_URL)
+    }
+    catch(err){
+        console.log(err)
+    }
+}
+
 export const userPrefs = async ()=> {
     try{
         const res = await account.getPrefs()
@@ -29,6 +38,7 @@ export async function register_email(email:string,password:string){
         console.error(err);
     }
 }
+
 export async function aiPower(payload:object){
     const res = await functions.createExecution('6483d0d23dac2ca66628',JSON.stringify(payload))
     return res;
